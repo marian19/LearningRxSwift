@@ -2,20 +2,20 @@
 # platform :ios, '9.0'
 
 target 'LearningRxSwift' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for LearningRxSwift
-pod 'RxSwift'
+    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for LearningRxSwift
+    pod 'RxSwift'
     pod 'RxCocoa'
-  target 'LearningRxSwiftTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'LearningRxSwiftUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+    target 'LearningRxSwiftTests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+    
+    target 'LearningRxSwiftUITests' do
+        inherit! :search_paths
+        # Pods for testing
+    end
+    
 end
