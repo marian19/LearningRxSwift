@@ -23,9 +23,11 @@ class LoginViewModel {
     
     func setup() {
         isValid = Observable.combineLatest( username.asObservable(), self.password.asObservable())
-        {
-            return ($0?.characters.count)! > 0
-                && ($1?.characters.count)! > 0
+        {(username, password) in
+            return username!.characters.count > 5
+                && password!.characters.count > 5
+//            return ($0?.characters.count)! > 0
+//                && ($1?.characters.count)! > 0
         }
     }
 }

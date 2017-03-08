@@ -4,7 +4,27 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ModelMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Moya-ModelMapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Moya.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -24,7 +44,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Result.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RxCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RxOptional.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,12 +67,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4633FF04473906F58F14490A02EA2AA2</key>
+		<key>063EB7096B2EDE890EA4B5C105D48B3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>743BF9C66FFC11D8ADA09659E4B8A05F</key>
+		<key>2A6D0851BA24DD25864CB23A3A83B9CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>58CAA23A07FCB74970446940F507C697</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -52,17 +87,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>94F1463C97BD3835FD242050B028B919</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A037F17A22A26CCC0871569324A91A3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C29815C4D3FD00B55E3D1FD762DB98B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F514ABDBEACFC4D245FB33254C3F7315</key>
+		<key>C419A9BCC9AACDC44A26B80764B6B554</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EFDB85DF4827734B35E8A46720ACAEE0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>FA42E5287DA3C24259388C710D87FA13</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FBCC69D7C794145A1D1F84A3164E6083</key>
 		<dict>
 			<key>primary</key>
 			<true/>

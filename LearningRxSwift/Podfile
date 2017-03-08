@@ -6,7 +6,8 @@ target 'LearningRxSwift' do
     use_frameworks!
     
     # Pods for LearningRxSwift
-    pod 'RxSwift'
+    pod 'Moya-ModelMapper/RxSwift'
+    pod 'RxOptional'
     pod 'RxCocoa'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 

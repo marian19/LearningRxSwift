@@ -25,10 +25,13 @@ class CircleViewModel {
             .map { center in
                 guard let center = center else { return UIColor.flatten(.black)() }
                 
-                let red: CGFloat = ((center.x * 2 + center.y).truncatingRemainder(dividingBy: 255.0) / 255.0) // We just manipulate red, but you can do w/e
+                let red: CGFloat = ((center.x  + center.y).truncatingRemainder(dividingBy: 255.0) / 255.0) // We just manipulate red, but you can do w/e
                 let green: CGFloat = 100.0
                 let blue: CGFloat = 0.0
                 
+//                let red: CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max) 
+//                let green: CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max)
+//                let blue: CGFloat = CGFloat(arc4random()) / CGFloat(UInt32.max)
                 return UIColor.flatten(UIColor(red: red, green: green, blue: blue, alpha: 1.0))()
         }
     }

@@ -10,10 +10,10 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class ViewController: UIViewController,UITableViewDelegate ,UITableViewDataSource {
+class ViewController: UIViewController{
 
-    
-    var shownCities = [String]() // Data source for UITableView
+    let shownCities: Variable<[String]> = Variable(["New York", "London", "Oslo", "Warsaw", "Berlin", "Praga"])
+
     let allCities = ["New York", "London", "Oslo", "Warsaw", "Berlin", "Praga"] // Our mocked API data source
     let disposeBag = DisposeBag() // Bag of disposables to release them when view is being deallocated
     @IBOutlet weak var tableView: UITableView!
@@ -23,7 +23,6 @@ class ViewController: UIViewController,UITableViewDelegate ,UITableViewDataSourc
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableView.dataSource = self
         
         searchBar
             .rx.text // Observable property thanks to RxCocoa
@@ -32,21 +31,20 @@ class ViewController: UIViewController,UITableViewDelegate ,UITableViewDataSourc
             .distinctUntilChanged() // If they didn't occur, check if the new value is the same as old.
             .filter { !$0.isEmpty } // If the new value is really new, filter for non-empty query.
             .subscribe(onNext: { [unowned self] query in // Here we subscribe to every new value, that is not empty (thanks to filter above).
-                self.shownCities = self.allCities.filter { $0.hasPrefix(query) } // We now do our "API Request" to find cities.
+                self.shownCities.value = self.allCities.filter { $0.hasPrefix(query) } // We now do our "API Request" to find cities.
                 self.tableView.reloadData() // And reload table view data.
             })
-            .addDisposableTo(disposeBag)    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return shownCities.count
+            .addDisposableTo(disposeBag)
+
+        shownCities.asObservable()
+            .observeOn(MainScheduler.instance)
+            .bindTo(tableView.rx.items(cellIdentifier: "Cell")) { (index, element, cell) in
+                print(element)
+                cell.textLabel?.text = element
+            }
+            .addDisposableTo(disposeBag)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cityPrototypeCell", for: indexPath)
-        cell.textLabel?.text = shownCities[indexPath.row]
-        
-        return cell
-    }
 
 
 }

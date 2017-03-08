@@ -115,6 +115,21 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		5644BC611E6D84680083C417 /* table view */ = {
+			isa = PBXGroup;
+			children = (
+				565278041E6C094400C7CA17 /* ViewController.swift */,
+			);
+			name = "table view";
+			sourceTree = "<group>";
+		};
+		5644BC631E6DA2290083C417 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		565277F61E6C094400C7CA17 = {
 			isa = PBXGroup;
 			children = (
@@ -140,10 +155,11 @@
 		565278011E6C094400C7CA17 /* LearningRxSwift */ = {
 			isa = PBXGroup;
 			children = (
-				5644BC5C1E6D66160083C417 /* Login */,
+				5644BC631E6DA2290083C417 /* Networking */,
+				5644BC611E6D84680083C417 /* table view */,
 				5644BC571E6D41460083C417 /* Circle view */,
+				5644BC5C1E6D66160083C417 /* Login */,
 				565278021E6C094400C7CA17 /* AppDelegate.swift */,
-				565278041E6C094400C7CA17 /* ViewController.swift */,
 				565278061E6C094400C7CA17 /* Main.storyboard */,
 				565278091E6C094400C7CA17 /* Assets.xcassets */,
 				5652780B1E6C094400C7CA17 /* LaunchScreen.storyboard */,
