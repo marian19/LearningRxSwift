@@ -28,7 +28,7 @@ A “hot” Observable may begin emitting items as soon as it is created, and so
     DispatchQueue.global(qos: .default).async {
         // Simulate some work
         Thread.sleep(forTimeInterval: 10)
-        observer.onNext("Hello 🐣")
+        observer.onNext("Hi")
         observer.onCompleted()
     }
     return Disposables.create()
@@ -41,7 +41,7 @@ print(element)
 
   * __Just__ — convert an object or a set of objects into an Observable that emits that or those objects
   ```
-  let observable = Observable<String>.just("Hello again  🐥");
+  let observable = Observable<String>.just("Hi");
 observable.subscribe(onNext: { (element) in
     print(element)
 }).addDisposableTo(disposeBag)
@@ -52,4 +52,16 @@ observable.subscribe(onCompleted: {
   
   ```
   * __Interval__ — create an Observable that emits a sequence of integers spaced by a particular time interval
+  ```
+  let observable = Observable<Int>.interval(0.3, scheduler: MainScheduler.instance)
+observable.subscribe(onNext: { (element) in
+   print(element)
+}).addDisposableTo(disposeBag)
+```
   * __Repeat__ — create an Observable that emits a particular item or sequence of items repeatedly
+  ```
+  let observable = Observable<String>.repeatElement("Hi")
+observable.subscribe(onNext: { (element) in
+   print(element)
+}).addDisposableTo(disposeBag)
+```
