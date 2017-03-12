@@ -67,3 +67,8 @@ observable.subscribe(onNext: { (element) in
    print(element)
 }).addDisposableTo(disposeBag)
 ```
+
+### **Transforming Observables**
+  * __FlatMap__ — transform the items emitted by an Observable into Observables, then flatten the emissions 
+  * __Map__ — transform the items emitted by an Observable by applying a function to each item
+
