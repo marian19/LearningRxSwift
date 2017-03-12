@@ -52,6 +52,7 @@ observable.subscribe(onCompleted: {
   
   ```
   * __Interval__ — create an Observable that emits a sequence of integers spaced by a particular time interval
+  
   ```
   let observable = Observable<Int>.interval(0.3, scheduler: MainScheduler.instance)
 observable.subscribe(onNext: { (element) in
@@ -59,6 +60,7 @@ observable.subscribe(onNext: { (element) in
 }).addDisposableTo(disposeBag)
 ```
   * __Repeat__ — create an Observable that emits a particular item or sequence of items repeatedly
+  
   ```
   let observable = Observable<String>.repeatElement("Hi")
 observable.subscribe(onNext: { (element) in
