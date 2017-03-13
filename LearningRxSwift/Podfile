@@ -10,7 +10,7 @@ target 'LearningRxSwift' do
     pod 'RxOptional'
     pod 'RxCocoa'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
-
+    pod 'MBProgressHUD'
     target 'LearningRxSwiftTests' do
         inherit! :search_paths
         # Pods for testing

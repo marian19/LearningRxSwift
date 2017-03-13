@@ -3,6 +3,7 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - MBProgressHUD (1.0.0)
   - ModelMapper (6.0.0)
   - Moya (8.0.2):
     - Moya/Core (= 8.0.2)
@@ -29,6 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
+  - MBProgressHUD
   - Moya-ModelMapper/RxSwift
   - RxCocoa
   - RxOptional
@@ -45,6 +47,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 856a113053a7bc9cbe5d6367a555d773fc5cfef7
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   ModelMapper: 3596a82f26c43491f6a8d3a00bcdba6ba0e62a93
   Moya: 47f61da5b634aa71f676431b64ee0f81e976296d
   Moya-ModelMapper: 7084396138e6f9359881db654ee6a4d826a64f14
@@ -53,6 +56,6 @@ SPEC CHECKSUMS:
   RxOptional: b97b59183af80d1e729ac9e51d09a10be668d6a8
   RxSwift: 46574f70d416b7923c237195939cc488a7fbf3a0
 
-PODFILE CHECKSUM: 859a557c46e031169155d5d01a18e25853c4d373
+PODFILE CHECKSUM: 710f65055376fe1548dff4c9000e60eb591c278a
 
 COCOAPODS: 1.2.0

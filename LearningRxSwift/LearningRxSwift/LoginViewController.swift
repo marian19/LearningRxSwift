@@ -15,39 +15,46 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    
-    fileprivate var loginViewModel: LoginViewModel!
+    @IBOutlet weak var signingInActivityIndicatorView: UIActivityIndicatorView!
+
+    fileprivate var viewModel: LoginViewModel!
     fileprivate let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginViewModel = LoginViewModel()
-        // Do any additional setup after loading the view.
-        usernameTextField.rx.text.bindTo(loginViewModel.username).addDisposableTo(disposeBag)
-        passwordTextField.rx.text.bindTo(loginViewModel.password).addDisposableTo(disposeBag)
-        usernameTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: {
-            print("return pressed")
-        }).addDisposableTo(disposeBag)
         
-        passwordTextField.rx.controlEvent(.editingDidEndOnExit).subscribe(onNext: {
-            print("return pressed")
-        }).addDisposableTo(disposeBag)
-        //enable login button
-        loginViewModel.isValid?.subscribe(onNext:{ [weak self] valid in
-            
-            self?.loginButton.isEnabled = valid
-            
-        }).addDisposableTo(disposeBag)
+        viewModel = LoginViewModel(input: (username: usernameTextField.rx.text.orEmpty.asObservable(), password: passwordTextField.rx.text.orEmpty.asObservable(), loginTaps: loginButton.rx.tap.asObservable()))
         
-        // OR
-        //        loginViewModel.isValid.map{ $0 }?
-        //            .bindTo(loginButton.rx.isEnabled).addDisposableTo(disposeBag)
+        // bind results to  {
+        viewModel.signInEnabled
+            .subscribe(onNext: { [weak self] valid  in
+                self?.loginButton.isEnabled = valid
+                self?.loginButton.alpha = valid ? 1.0 : 0.5
+            })
+            .disposed(by: disposeBag)
+        
+        
+        viewModel.signingIn
+            .bindTo(signingInActivityIndicatorView.rx.isAnimating)
+            .disposed(by: disposeBag)
+        
+        viewModel.signedIn
+            .subscribe(onNext: { signedIn in
+                print("User signed in \(signedIn)")
+            })
+            .disposed(by: disposeBag)
+        //}
+        
+        let tapBackground = UITapGestureRecognizer()
+        tapBackground.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
+        view.addGestureRecognizer(tapBackground)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
     
 
     

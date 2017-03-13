@@ -22,6 +22,7 @@ A “hot” Observable may begin emitting items as soon as it is created, and so
 ## Observable Operators
 ### **Creating Observables**
   * __Create__ — create an Observable from scratch by calling observer methods programmatically
+
   ```
   let observable = Observable<String>.create { (observer) -> Disposable in
     

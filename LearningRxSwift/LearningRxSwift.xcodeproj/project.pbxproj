@@ -19,6 +19,8 @@
 		5652780D1E6C094400C7CA17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5652780B1E6C094400C7CA17 /* LaunchScreen.storyboard */; };
 		565278181E6C094500C7CA17 /* LearningRxSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565278171E6C094500C7CA17 /* LearningRxSwiftTests.swift */; };
 		565278231E6C094500C7CA17 /* LearningRxSwiftUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565278221E6C094500C7CA17 /* LearningRxSwiftUITests.swift */; };
+		566C066B1E7568E300F212A2 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566C066A1E7568E300F212A2 /* ActivityIndicator.swift */; };
+		569200701E76CF3A00E1EAE1 /* Httpclient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5692006F1E76CF3A00E1EAE1 /* Httpclient.swift */; };
 		57375BF4482192A515483ABE /* Pods_LearningRxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6B08CD25E494C0FCE9AFEB4 /* Pods_LearningRxSwift.framework */; };
 		F856BC057EF9A162F3650EC4 /* Pods_LearningRxSwiftUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 518C4ED7A1E75BBF4934DB19 /* Pods_LearningRxSwiftUITests.framework */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,8 @@
 		5652781E1E6C094500C7CA17 /* LearningRxSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearningRxSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		565278221E6C094500C7CA17 /* LearningRxSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningRxSwiftUITests.swift; sourceTree = "<group>"; };
 		565278241E6C094500C7CA17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		566C066A1E7568E300F212A2 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		5692006F1E76CF3A00E1EAE1 /* Httpclient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Httpclient.swift; sourceTree = "<group>"; };
 		5DA3A626225DDDBA2789A235 /* Pods-LearningRxSwiftUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearningRxSwiftUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LearningRxSwiftUITests/Pods-LearningRxSwiftUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		71D44AEE565CB61A0ED74FA1 /* Pods-LearningRxSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LearningRxSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-LearningRxSwift/Pods-LearningRxSwift.release.xcconfig"; sourceTree = "<group>"; };
 		9EB19CD766625167B88A1D6F /* Pods_LearningRxSwiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LearningRxSwiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +115,7 @@
 			children = (
 				5644BC5D1E6D67DC0083C417 /* LoginViewController.swift */,
 				5644BC5F1E6D67F60083C417 /* LoginViewModel.swift */,
+				566C066A1E7568E300F212A2 /* ActivityIndicator.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -126,6 +131,7 @@
 		5644BC631E6DA2290083C417 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				5692006F1E76CF3A00E1EAE1 /* Httpclient.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -495,6 +501,8 @@
 			files = (
 				565278051E6C094400C7CA17 /* ViewController.swift in Sources */,
 				565278031E6C094400C7CA17 /* AppDelegate.swift in Sources */,
+				569200701E76CF3A00E1EAE1 /* Httpclient.swift in Sources */,
+				566C066B1E7568E300F212A2 /* ActivityIndicator.swift in Sources */,
 				5644BC601E6D67F60083C417 /* LoginViewModel.swift in Sources */,
 				5644BC5B1E6D419F0083C417 /* CircleViewModel.swift in Sources */,
 				5644BC5E1E6D67DC0083C417 /* LoginViewController.swift in Sources */,
