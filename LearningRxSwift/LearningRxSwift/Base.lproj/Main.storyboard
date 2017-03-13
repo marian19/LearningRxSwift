@@ -221,7 +221,7 @@
                     <connections>
                         <outlet property="loginButton" destination="Y4k-Tc-05m" id="wmH-5s-Qv9"/>
                         <outlet property="passwordTextField" destination="d7E-bJ-jVL" id="qDO-OG-Sfm"/>
-                        <outlet property="signingInOulet" destination="T14-L0-qtC" id="g1x-5Z-gHq"/>
+                        <outlet property="signingInActivityIndicatorView" destination="T14-L0-qtC" id="89s-KO-HEd"/>
                         <outlet property="usernameTextField" destination="eQO-62-bLc" id="mwp-fW-qZF"/>
                     </connections>
                 </viewController>
