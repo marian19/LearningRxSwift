@@ -67,9 +67,58 @@ observable.subscribe(onNext: { (element) in
 observable.subscribe(onNext: { (element) in
    print(element)
 }).addDisposableTo(disposeBag)
+
 ```
 
 ### **Transforming Observables**
   * __FlatMap__ — transform the items emitted by an Observable into Observables, then flatten the emissions 
   * __Map__ — transform the items emitted by an Observable by applying a function to each item
+  
+  ```
+  let observable = Observable<Int>.create { (observer) -> Disposable in
+    observer.onNext(1)
+    return NopDisposable.instance
+}
 
+let boolObservable : Observable<Bool> = observable.map { (element) -> Bool in
+    if (element == 0) {
+        return false
+    } else {
+        return true
+    }
+}
+
+boolObservable.subscribeNext { (boolElement) in
+    print(boolElement)
+    }.addDisposableTo(disposeBag)
+    ```
+    
+  * __Scan__ — apply a function to each item emitted by an Observable, sequentially, and emit each successive value
+  
+  ```
+  let observable = Observable<String>.create { (observer) -> Disposable in
+    observer.onNext("D")
+    observer.onNext("U")
+    observer.onNext("M")
+    observer.onNext("M")
+    observer.onNext("Y")
+    return NopDisposable.instance
+}
+
+observable.scan("") { (lastValue, currentValue) -> String in
+	// The new value emmited is the LAST value emmited + current value:
+    return lastValue + currentValue
+    }.subscribeNext { (element) in
+        print(element)
+    }.addDisposableTo(disposeBag)
+    }
+}
+
+ Will print:
+  D
+  DU
+  DUM
+  DUMM
+  DUMMY
+
+```
