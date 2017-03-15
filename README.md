@@ -140,3 +140,34 @@ observable.scan(1) { (lastValue, currentValue) -> Int in
 
 //Here’s the scan operator to calculate a factorial of 5, which will print 120
 ```
+
+### **Filtering Observables**
+  * __Filter__ — emit only those items from an Observable that pass a predicate test
+  
+  ```
+  let observable = Observable<String>.create { (observer) -> Disposable in
+    observer.onNext("🎁")
+    observer.onNext("💩")
+    observer.onNext("🎁")
+    observer.onNext("💩")
+    observer.onNext("💩")
+    return NopDisposable.instance
+}
+
+observable.filter { (element) -> Bool in
+    return element == "🎁"
+    }.subscribeNext { (element) in
+        print(element)
+    }.addDisposableTo(disposeBag)
+}
+```
+
+  * __Debounce__ — only emit an item from an Observable if a particular timespan has passed without it emitting another item
+  
+  debounce in this example just skips elements that aren’t at least 2 seconds apart. So if an element will be emitted after   
+  1 second after the last one, it’ll be skipped, if it’s emitted 2.5 seconds after the last one, it’ll be emitted.
+  ```
+  
+observable.debounce(2, scheduler: MainScheduler.instance).subscribeNext { (element) in
+    print(element)
+}
