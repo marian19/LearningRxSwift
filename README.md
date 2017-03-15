@@ -19,6 +19,56 @@ A “hot” Observable may begin emitting items as soon as it is created, and so
  The Disposable that needs to be returned in the Observable is used to clean up the Observable if it doesn’t have a chance to complete the work normally or When we are done with a sequence and we want to release all of the resources allocated to compute the upcoming elements.
  When a DisposeBag is deallocated, it will call dispose on each of the added disposables.
  
+ ## Schedulers
+ Schedulers are most commonly used to easily tell the observables and observers on which threads/queues should they execute, or send notifications.
+The most common operators connected to schedulers you’ll use are **observeOn** and **subscribeOn**.
+Normally the Observable will execute and send notifications on the same thread on which the observer subscribes on.
+
+#### **ObserveOn**
+observeOn specifies a scheduler on which the Observable will send the events to the observer. It doesn’t change the scheduler (thread/queue) on which it executes.
+
+```
+let observable = Observable<String>.create { (observer) -> Disposable in
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+        // Simulate some work
+        NSThread.sleepForTimeInterval(10)
+        observer.onNext("Hello dummy 🐥")
+        observer.onCompleted()
+    })
+    return NopDisposable.instance
+}.observeOn(MainScheduler.instance)
+```
+#### **SubscribeOn**
+subscribeOn is very similar to observeOn but it also changes the scheduler on which the Observable will execute work.
+
+```
+let observable = Observable<String>.create { (observer) -> Disposable in
+   // Simulate some work
+   NSThread.sleepForTimeInterval(10)
+   observer.onNext("Hello dummy 🐥")
+   observer.onCompleted()
+   return NopDisposable.instance
+}
+
+//it causes the Observable to work on a global queue, but also send events on a global queue, not on the UI queue
+observable.subscribeOn(ConcurrentDispatchQueueScheduler(globalConcurrentQueueQOS: .Default)).subscribeNext { [weak self] (element) in
+ self?.myUIText.text = element
+}.addDisposableTo(disposeBag)
+```
+
+```
+let observable = Observable<String>.create { (observer) -> Disposable in
+   // Simulate some work
+   NSThread.sleepForTimeInterval(10)
+   observer.onNext("Hello dummy 🐥")
+   observer.onCompleted()
+   return NopDisposable.instance
+}.observeOn(MainScheduler.instance)
+        observable.subscribeOn(ConcurrentDispatchQueueScheduler(globalConcurrentQueueQOS: .Default)).subscribeNext { [weak self] (element) in
+ self?.myUIText.text = element
+}.addDisposableTo(disposeBag)
+```
+ 
 ## Observable Operators
 ### **Creating Observables**
   * __Create__ — create an Observable from scratch by calling observer methods programmatically
@@ -171,3 +221,55 @@ observable.filter { (element) -> Bool in
 observable.debounce(2, scheduler: MainScheduler.instance).subscribeNext { (element) in
     print(element)
 }
+```
+
+### **Combining Observables**
+
+  * __Merge__ — combine multiple Observables into one by merging their emissions
+  
+  ```
+    let observable = Observable<String>.create { (observer) -> Disposable in
+    observer.onNext("🎁")
+    observer.onNext("🎁")
+    return NopDisposable.instance
+}
+        
+let observable2 = Observable<String>.create { (observer) -> Disposable in
+    observer.onNext("💩")
+    observer.onNext("💩")
+    return NopDisposable.instance
+}
+        
+Observable.of(observable, observable2).merge().subscribeNext { (element) in
+    print(element)
+}.addDisposableTo(disposeBag)
+```
+
+  * __Zip__ — combine the emissions of multiple Observables together via a specified function and emit single items for each combination based on the results of this function
+  
+  ```
+  let observable = Observable<String>.create { (observer) -> Disposable in
+    observer.onNext("🎁")
+    observer.onNext("🎁")
+    return NopDisposable.instance
+}
+        
+let observable2 = Observable<String>.create { (observer) -> Disposable in
+    observer.onNext("💩")
+    observer.onNext("💩")
+    return NopDisposable.instance
+}
+
+[observable, observable2].zip { (elements) -> String in
+    var result = ""
+    for element in elements {
+        result += element
+    }
+    return result
+}.subscribeNext { (element) in
+    print(element)
+}.addDisposableTo(disposeBag)
+```
+
+
+
