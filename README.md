@@ -1,4 +1,4 @@
-# LearningRxSwift
+# Learning RxSwift
 An observer subscribes to an Observable. Then that observer reacts to whatever item or sequence of items the Observable emits.
 
 The Subscribe method is how you connect an observer to an Observable. Your observer implements some subset of the following methods:
@@ -271,5 +271,116 @@ let observable2 = Observable<String>.create { (observer) -> Disposable in
 }.addDisposableTo(disposeBag)
 ```
 
+## Subjects
 
+A Subject is an output(Observable) but it’s also an input! That means that you can dynamically/imperatively emit new elements in a sequence.
+
+```
+let subject = PublishSubject<String>()
+ let observable : Observable<String> = subject
+ // the observable is not being observed yet, so this value will not be caught by anything and won't be printed
+ subject.onNext("Am I too early for the party?")
+ 
+ observable
+     .subscribe(onNext: { text in
+         print(text)
+     })
+     .addDisposableTo(disposeBag)
+ 
+ // This is called when there's 1 observer so it will be printed
+ subject.onNext("🎉🎉🎉")
+ ```
+ 
+   ### Subject Types
+  
+ * **Publish Subject**
+  
+  As you could see in the experiment above the publish subject will ignore all elements that were emitted before subscribe have happened.You use it when you’re just interested in future values.
+  
+  ```
+  let subject = PublishSubject<String>()
+ let observable : Observable<String> = subject
+ subject.onNext("Ignored...")
+ 
+ observable
+     .subscribe(onNext: { text in
+         print(text)
+     })
+     .addDisposableTo(disposeBag)
+ 
+ subject.onNext("Printed!")
+ ```
+ 
+  * **Replay Subject**
+  
+ Replay subject will repeat last N number of values, even the ones before the subscription happened.You use it when you’re interested in all values of the subjects lifetime. The N is the buffer, so for our example it’s 3:
+ 
+ ```
+ let subject = ReplaySubject<String>().create(bufferSize: 3)
+let observable : Observable<String> = subject
+
+subject.onNext("Not printed!")
+subject.onNext("Printed!")
+subject.onNext("Printed!")
+subject.onNext("Printed!")
+
+observable
+    .subscribe(onNext: { text in
+        print(text)
+    })
+    .addDisposableTo(disposeBag)
+
+subject.onNext("Printed!")
+```
+
+ * **Behavior Subject**
+ 
+Behavior subject will repeat only the one last value. Moreover it’s initiated with a starting value, unlike the other subjects.You use it when you just need to know the last value, for example the array of elements for your table view.
+  
+  ```
+  let subject = BehaviorSubject<String>(value: "Initial value")
+let observable : Observable<String> = subject
+
+subject.onNext("Not printed!")
+subject.onNext("Not printed!")
+subject.onNext("Printed!")
+
+observable
+    .subscribe(onNext: { text in
+        print(text)
+    })
+    .addDisposableTo(disposeBag)
+
+subject.onNext("Printed!")
+```
+
+   ### Variable
+   
+   Variable is just a simple wrapper over BehaviorSubject.
+   
+   
+   ```
+   let googleString = Variable("currentString")
+
+//Getting the value
+print(googleString.value)
+
+//Setting the value
+googleString.value = "newString"
+
+//Observing the value
+googleString.asObservable()
+    .subscribe(onNext: { text in
+        print(text)
+})
+.addDisposableTo(disposeBag)
+```
+
+   
+   
+
+
+ 
+  
+ 
 
