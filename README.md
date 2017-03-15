@@ -119,5 +119,24 @@ observable.scan("") { (lastValue, currentValue) -> String in
   DUM
   DUMM
   DUMMY
+```
+```
+let observable = Observable<Int>.create { (observer) -> Disposable in
+    observer.onNext(1)
+    observer.onNext(2)
+    observer.onNext(3)
+    observer.onNext(4)
+    observer.onNext(5)
+    return NopDisposable.instance
+}
 
+observable.scan(1) { (lastValue, currentValue) -> Int in  
+    return lastValue * currentValue
+    }.subscribeNext { (element) in
+        print(element)
+    }.addDisposableTo(disposeBag)
+    }
+}
+
+//Here’s the scan operator to calculate a factorial of 5, which will print 120
 ```
