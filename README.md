@@ -295,7 +295,7 @@ let subject = PublishSubject<String>()
   
  * **Publish Subject**
   
-  As you could see in the experiment above the publish subject will ignore all elements that were emitted before subscribe have happened.You use it when you’re just interested in future values.
+  Publish subject will ignore all elements that were emitted before subscribe have happened.You use it when you’re just interested in future values.
   
   ```
   let subject = PublishSubject<String>()
@@ -375,12 +375,3 @@ googleString.asObservable()
 })
 .addDisposableTo(disposeBag)
 ```
-
-   
-   
-
-
- 
-  
- 
-
