@@ -32,7 +32,7 @@ let observable = Observable<String>.create { (observer) -> Disposable in
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
         // Simulate some work
         NSThread.sleepForTimeInterval(10)
-        observer.onNext("Hello dummy 🐥")
+        observer.onNext("Hello")
         observer.onCompleted()
     })
     return NopDisposable.instance
@@ -45,7 +45,7 @@ subscribeOn is very similar to observeOn but it also changes the scheduler on wh
 let observable = Observable<String>.create { (observer) -> Disposable in
    // Simulate some work
    NSThread.sleepForTimeInterval(10)
-   observer.onNext("Hello dummy 🐥")
+   observer.onNext("Hello")
    observer.onCompleted()
    return NopDisposable.instance
 }
@@ -60,7 +60,7 @@ observable.subscribeOn(ConcurrentDispatchQueueScheduler(globalConcurrentQueueQOS
 let observable = Observable<String>.create { (observer) -> Disposable in
    // Simulate some work
    NSThread.sleepForTimeInterval(10)
-   observer.onNext("Hello dummy 🐥")
+   observer.onNext("Hello")
    observer.onCompleted()
    return NopDisposable.instance
 }.observeOn(MainScheduler.instance)
